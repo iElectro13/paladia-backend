@@ -68,15 +68,9 @@ def create_book():
     db.session.commit()
     return "New Book Created"
 
-
-"""
-Esquema para enviar post request:
-{
-    "title":"Cien años de soledad",
-    "category":"Realismo magico",
-    "description":"Cien años de soledad es una novela del escritor colombiano Gabriel García Márquez, ganador del Premio Nobel de Literatura en 1982.",
-    "image":"no-image",
-    "price": 100,
-    "seller":"Enmanuel Pereira"
-}
-"""
+@books.delete("/delete/<int:id>")
+def delete_book(id):
+    book = Books.query.get(id)
+    db.session.delete(book)
+    db.session.commit()
+    return "Deleted book"
