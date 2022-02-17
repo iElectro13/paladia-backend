@@ -1,11 +1,8 @@
 from flask import Blueprint, request, jsonify
 from src.database import Books, db
-from flask_cors import CORS, cross_origin
-
 books = Blueprint("books", __name__,url_prefix="/api/v1/books")
 
 @books.get("/")
-@cross_origin()
 def get_books():
     all_books = Books.query.all()
     data = []
@@ -24,7 +21,6 @@ def get_books():
     return jsonify(data)
 
 @books.get("/<int:id>")
-@cross_origin()
 def get_book_by_id(id):
     book = Books.query.filter_by(id = id).first()
     return jsonify({
@@ -40,7 +36,6 @@ def get_book_by_id(id):
         })
 
 @books.get("/<category>")
-@cross_origin()
 def get_books_by_category(category):
     all_books = Books.query.filter_by(category= category).all()
     data = []
@@ -59,7 +54,6 @@ def get_books_by_category(category):
     return jsonify(data)
 
 @books.post("/new")
-@cross_origin()
 def create_book():
     title = request.json['title']
     category = request.json['category']
