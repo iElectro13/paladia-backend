@@ -1,4 +1,3 @@
-import faker
 from flask import jsonify
 import requests
 from faker import Faker
@@ -20,7 +19,7 @@ categories = [
     "poesia",
     "terror"
 ]
-url = "https://paladia-api.herokuapp.com/api/v1/books/new"
+url = "http://localhost:5000/api/v1/books/new"
 
 for i in range(30):
     image = requests.get('https://api.lorem.space/image/book?w=150&h=220')
