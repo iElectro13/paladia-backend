@@ -2,10 +2,13 @@ from flask import Flask
 import os
 from src.books import books
 from src.database import db
+from flask_cors import CORS, cross_origin
 
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    cors = CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
 
     if test_config is None:
 
